@@ -8,8 +8,13 @@ read str
 # Remove spaces and convert to lowercase
 str=$(echo "$str" | tr -d ' ' | tr '[:upper:]' '[:lower:]')
 
-# Reverse the string
-rev=$(echo "$str" | rev)
+# Reverse the string manually
+rev=""
+len=${#str}
+for ((i=len-1; i>=0; i--))
+do
+    rev="${rev}${str:$i:1}"
+done
 
 # Compare original and reversed strings
 if [ "$str" = "$rev" ]; then
